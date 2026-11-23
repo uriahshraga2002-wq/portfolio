@@ -1,13 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr" class="lang-en" translate="no">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
   <title>Uriah Shraga | Law Student</title>
-  <meta name="description" content="Uriah Shraga – third-year LL.B student at Netanya Academic College. Judicial clinic, law review editor, student leadership.">
+  <meta name="description" content="Uriah Shraga – third-year LL.B student at Netanya Academic College. אוריה שרגא – סטודנט למשפטים, שנה ג'.">
+  <script>
+    (function () {
+      var lang = 'en';
+      try {
+        var q = new URLSearchParams(location.search).get('lang');
+        var saved = localStorage.getItem('lang');
+        if (q === 'he' || q === 'en') lang = q;
+        else if (saved === 'he' || saved === 'en') lang = saved;
+        else if ((navigator.language || '').toLowerCase().indexOf('he') === 0) lang = 'he';
+      } catch (e) {}
+      var h = document.documentElement;
+      h.lang = lang; h.dir = lang === 'he' ? 'rtl' : 'ltr'; h.className = 'lang-' + lang;
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Inter:wght@400;500;600&family=Frank+Ruhl+Libre:wght@500;700&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --ink: #14213d;
@@ -20,33 +35,34 @@
       --line: #e7e3da;
       --radius: 14px;
       --max: 1040px;
+      --serif: "Newsreader", Georgia, serif;
+      --sans: "Inter", system-ui, sans-serif;
     }
+    .lang-he { --serif: "Frank Ruhl Libre", "Newsreader", serif; --sans: "Assistant", system-ui, sans-serif; }
+    .lang-en .he, .lang-he .en { display: none !important; }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-    body {
-      font-family: "Inter", system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--ink-soft);
-      line-height: 1.65;
-      font-size: 16px;
-    }
-    h1, h2, h3 { font-family: "Newsreader", Georgia, serif; color: var(--ink); font-weight: 600; line-height: 1.2; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--ink-soft); line-height: 1.65; font-size: 16px; }
+    .lang-he body { font-size: 17px; }
+    h1, h2, h3 { font-family: var(--serif); color: var(--ink); font-weight: 600; line-height: 1.2; }
+    .lang-he h1, .lang-he h2, .lang-he h3 { font-weight: 700; }
     a { color: inherit; }
     .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
 
     /* Nav */
-    header {
-      position: fixed; inset: 0 0 auto 0; z-index: 50;
-      background: rgba(251, 250, 247, 0.9);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--line);
-    }
-    nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-    .logo { font-family: "Newsreader", serif; font-size: 1.3rem; font-weight: 600; color: var(--ink); text-decoration: none; }
-    .logo span { color: var(--gold); }
-    .links { display: flex; gap: 26px; list-style: none; }
+    header { position: fixed; inset: 0 0 auto 0; z-index: 50; background: rgba(251, 250, 247, 0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+    nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+    .logo { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; color: var(--ink); text-decoration: none; white-space: nowrap; }
+    .logo b { color: var(--gold); }
+    .nav-right { display: flex; align-items: center; gap: 22px; }
+    .links { display: flex; gap: 24px; list-style: none; }
     .links a { text-decoration: none; font-size: 0.92rem; font-weight: 500; color: var(--ink-soft); transition: color .2s; }
+    .lang-he .links a { font-size: 1rem; }
     .links a:hover { color: var(--gold); }
+    .lang-toggle { display: inline-flex; border: 1.5px solid var(--ink); border-radius: 999px; overflow: hidden; direction: ltr; }
+    .lang-toggle button { background: none; border: 0; padding: 5px 11px; font: 600 .82rem "Inter", "Assistant", sans-serif; color: var(--ink); cursor: pointer; }
+    .lang-en .lang-toggle [data-lang="en"], .lang-he .lang-toggle [data-lang="he"] { background: var(--ink); color: #fff; }
     .menu-btn { display: none; background: none; border: 0; cursor: pointer; padding: 8px; }
     .menu-btn span { display: block; width: 22px; height: 2px; background: var(--ink); margin: 5px 0; border-radius: 2px; }
 
@@ -54,40 +70,26 @@
     .hero { padding: 140px 0 70px; }
     .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 50px; align-items: center; }
     .eyebrow { text-transform: uppercase; letter-spacing: .14em; font-size: .78rem; font-weight: 600; color: var(--gold); margin-bottom: 14px; }
+    .lang-he .eyebrow { letter-spacing: .04em; font-size: .95rem; }
     .hero h1 { font-size: clamp(2.6rem, 6vw, 4rem); margin-bottom: 18px; }
     .hero p.lead { font-size: 1.12rem; max-width: 34rem; margin-bottom: 30px; }
     .btns { display: flex; flex-wrap: wrap; gap: 12px; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 22px; border-radius: 999px; font-weight: 600; font-size: .95rem;
-      text-decoration: none; transition: transform .15s, background .2s, color .2s;
-      border: 1.5px solid var(--ink);
-    }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; font-weight: 600; font-size: .95rem; text-decoration: none; transition: transform .15s, background .2s, color .2s; border: 1.5px solid var(--ink); }
     .btn:hover { transform: translateY(-2px); }
     .btn-primary { background: var(--ink); color: #fff; }
     .btn-primary:hover { background: #22325a; }
     .btn-ghost { color: var(--ink); }
     .btn-ghost:hover { background: var(--ink); color: #fff; }
-    .btn svg { width: 18px; height: 18px; }
+    .btn svg { width: 18px; height: 18px; flex: none; }
     .photo { justify-self: center; position: relative; }
-    .photo img {
-      width: min(300px, 70vw); aspect-ratio: 1; object-fit: cover; object-position: 50% 25%;
-      border-radius: 50%; border: 6px solid #fff;
-      box-shadow: 0 20px 50px rgba(20, 33, 61, .18);
-      display: block;
-    }
-    .photo::before {
-      content: ""; position: absolute; inset: -14px; border-radius: 50%;
-      border: 1.5px solid var(--gold); opacity: .55;
-    }
+    .photo img { width: min(300px, 70vw); aspect-ratio: 1; object-fit: cover; object-position: 50% 25%; border-radius: 50%; border: 6px solid #fff; box-shadow: 0 20px 50px rgba(20, 33, 61, .18); display: block; }
+    .photo::before { content: ""; position: absolute; inset: -14px; border-radius: 50%; border: 1.5px solid var(--gold); opacity: .55; }
 
     /* Snapshot */
-    .snapshot {
-      background: var(--ink); color: #dfe4ee; border-radius: var(--radius);
-      padding: 30px 34px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
-    }
-    .snapshot .stat strong { display: block; font-family: "Newsreader", serif; font-size: 1.9rem; color: #fff; font-weight: 600; line-height: 1.1; }
+    .snapshot { background: var(--ink); color: #dfe4ee; border-radius: var(--radius); padding: 30px 34px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .snapshot .stat strong { display: block; font-family: var(--serif); font-size: 1.9rem; color: #fff; font-weight: 600; line-height: 1.15; margin-bottom: 4px; }
     .snapshot .stat span { font-size: .88rem; }
+    .lang-he .snapshot .stat span { font-size: .98rem; }
     .snapshot .stat strong em { font-style: normal; color: var(--gold); }
 
     /* Sections */
@@ -96,28 +98,27 @@
     .section-head h2 { font-size: 2.1rem; }
     .section-head::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 
-    /* Timeline */
-    .sub { font-family: "Inter", sans-serif; font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); font-weight: 600; margin: 34px 0 16px; }
+    .sub { font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); font-weight: 600; margin: 34px 0 16px; }
+    .lang-he .sub { font-size: 1rem; letter-spacing: 0; }
     .sub:first-of-type { margin-top: 0; }
     .timeline { display: grid; gap: 16px; }
-    .item {
-      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-      padding: 22px 26px; display: grid; grid-template-columns: 130px 1fr; gap: 20px;
-      transition: border-color .2s, box-shadow .2s;
-    }
+    .item { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 26px; display: grid; grid-template-columns: 130px 1fr; gap: 20px; transition: border-color .2s, box-shadow .2s; }
     .item:hover { border-color: #d9cdb6; box-shadow: 0 8px 24px rgba(20, 33, 61, .06); }
     .date { font-size: .85rem; font-weight: 600; color: var(--gold); padding-top: 3px; }
+    .lang-he .date { font-size: .95rem; }
     .item h3 { font-size: 1.2rem; margin-bottom: 2px; }
+    .lang-he .item h3 { font-size: 1.3rem; }
     .org { font-size: .92rem; color: var(--muted); margin-bottom: 8px; }
+    .lang-he .org { font-size: 1rem; }
     .item p { font-size: .96rem; }
+    .lang-he .item p { font-size: 1.04rem; }
 
-    /* Education */
-    .edu { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--gold); border-radius: var(--radius); padding: 28px 30px; }
+    .edu { background: var(--card); border: 1px solid var(--line); border-inline-start: 4px solid var(--gold); border-radius: var(--radius); padding: 28px 30px; }
     .edu h3 { font-size: 1.4rem; }
     .edu .meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
     .pill { background: var(--gold-soft); color: #7a5f33; font-size: .85rem; font-weight: 600; padding: 5px 12px; border-radius: 999px; }
+    .lang-he .pill { font-size: .95rem; }
 
-    /* Projects */
     .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; gap: 10px; transition: transform .2s, box-shadow .2s; }
     .card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(20, 33, 61, .08); }
@@ -125,15 +126,16 @@
     .icon svg { width: 22px; height: 22px; }
     .card h3 { font-size: 1.2rem; }
     .card p { font-size: .94rem; }
+    .lang-he .card p { font-size: 1.02rem; }
+    .when { color: var(--muted); white-space: nowrap; }
 
-    /* Skills */
     .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     .skill-group { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
     .skill-group h3 { font-size: 1.1rem; margin-bottom: 14px; }
     .tags { display: flex; flex-wrap: wrap; gap: 8px; }
     .tag { border: 1px solid var(--line); background: var(--bg); font-size: .86rem; padding: 5px 12px; border-radius: 999px; }
+    .lang-he .tag { font-size: .95rem; }
 
-    /* Contact */
     .contact { margin: 90px 0 60px; background: var(--ink); color: #dfe4ee; border-radius: 22px; padding: 56px 40px; text-align: center; }
     .contact h2 { color: #fff; font-size: 2.3rem; margin-bottom: 12px; }
     .contact p { max-width: 32rem; margin: 0 auto 28px; }
@@ -142,12 +144,11 @@
     .contact .btn-primary:hover { background: #9a7a48; }
     .contact .btn-ghost { color: #fff; border-color: rgba(255,255,255,.5); }
     .contact .btn-ghost:hover { background: #fff; color: var(--ink); }
-    .contact .mail { display: inline-block; margin-top: 22px; color: #dfe4ee; font-size: .95rem; }
+    .contact .mail { display: inline-block; margin-top: 22px; color: #dfe4ee; font-size: .95rem; direction: ltr; }
 
     footer { text-align: center; font-size: .85rem; color: var(--muted); padding: 0 0 40px; }
 
-    /* Mobile */
-    @media (max-width: 860px) {
+    @media (max-width: 900px) {
       .hero { padding-top: 110px; }
       .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 36px; }
       .photo { order: -1; }
@@ -157,19 +158,16 @@
       .cards, .skills { grid-template-columns: 1fr; }
       .item { grid-template-columns: 1fr; gap: 6px; padding: 20px; }
       .menu-btn { display: block; }
-      .links {
-        position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; gap: 0;
-        background: var(--bg); border-bottom: 1px solid var(--line);
-        max-height: 0; overflow: hidden; transition: max-height .3s ease;
-      }
+      .nav-right { gap: 10px; }
+      .links { position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--line); max-height: 0; overflow: hidden; transition: max-height .3s ease; }
       .links.open { max-height: 400px; }
       .links li a { display: block; padding: 14px 20px; border-top: 1px solid var(--line); }
       .contact { padding: 44px 22px; }
       .section-head h2 { font-size: 1.8rem; }
     }
     @media (max-width: 420px) {
-      .snapshot { grid-template-columns: 1fr 1fr; gap: 18px; }
-      .snapshot .stat strong { font-size: 1.6rem; }
+      .snapshot { gap: 18px; }
+      .snapshot .stat strong { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -177,51 +175,45 @@
 
 <header>
   <nav class="wrap">
-    <a href="#top" class="logo">Uriah Shraga<span>.</span></a>
-    <button class="menu-btn" aria-label="Open menu" onclick="document.querySelector('.links').classList.toggle('open')">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="links" onclick="this.classList.remove('open')">
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <a href="#top" class="logo"><span class="en">Uriah Shraga</span><span class="he">אוריה שרגא</span><b>.</b></a>
+    <div class="nav-right">
+      <ul class="links" onclick="this.classList.remove('open')">
+        <li><a href="#experience"><span class="en">Experience</span><span class="he">ניסיון</span></a></li>
+        <li><a href="#education"><span class="en">Education</span><span class="he">השכלה</span></a></li>
+        <li><a href="#projects"><span class="en">Projects</span><span class="he">פרויקטים</span></a></li>
+        <li><a href="#skills"><span class="en">Skills</span><span class="he">כישורים</span></a></li>
+        <li><a href="#contact"><span class="en">Contact</span><span class="he">צור קשר</span></a></li>
+      </ul>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang="en" onclick="setLang('en')">EN</button>
+        <button type="button" data-lang="he" onclick="setLang('he')">עב</button>
+      </div>
+      <button class="menu-btn" aria-label="Menu" onclick="document.querySelector('.links').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 </header>
 
-<main id="top">
-  <!-- Hero -->
+<!-- ======================= ENGLISH ======================= -->
+<main class="en" lang="en" id="top">
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
         <div class="eyebrow">Law Student · LL.B, Year 3</div>
         <h1>Uriah Shraga</h1>
-        <p class="lead">
-          Third-year law student with hands-on experience in the courtroom and the prosecutor's office.
-          I combine rigorous legal research and writing with leadership experience gained in student government and in the IDF.
-        </p>
+        <p class="lead">Third-year law student with hands-on experience in the courtroom and the prosecutor's office. I combine rigorous legal research and writing with leadership experience gained in student government and in the IDF.</p>
         <div class="btns">
-          <a class="btn btn-primary" href="CV.pdf" download>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg>
-            Download CV
-          </a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/uriah-shraga-/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
-            LinkedIn
-          </a>
+          <a class="btn btn-primary" href="CV.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg>Download CV</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/uriah-shraga-/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a>
         </div>
       </div>
-      <div class="photo">
-        <img src="photo.jpg" alt="Uriah Shraga">
-      </div>
+      <div class="photo"><img src="photo.jpg" alt="Uriah Shraga"></div>
     </div>
   </section>
 
-  <!-- Snapshot -->
   <div class="wrap">
-    <div class="snapshot" aria-label="Snapshot">
+    <div class="snapshot">
       <div class="stat"><strong>94.98</strong><span>GPA, LL.B program</span></div>
       <div class="stat"><strong>2<em>×</em></strong><span>Legal clinics: court &amp; prosecution</span></div>
       <div class="stat"><strong>Law Review</strong><span>Editorial board, <i>Moznei Mishpat</i></span></div>
@@ -229,122 +221,35 @@
     </div>
   </div>
 
-  <!-- Experience -->
   <section class="block" id="experience">
     <div class="wrap">
       <div class="section-head"><h2>Experience</h2></div>
-
       <div class="sub">Legal &amp; Academic</div>
       <div class="timeline">
-        <div class="item">
-          <div class="date">2026 – Present</div>
-          <div>
-            <h3>Judicial Clinic: Law and Adjudication in Practice</h3>
-            <div class="org">Herzliya Magistrates' Court · Chambers of Hon. Judge Amiad Rat</div>
-            <p>Working directly alongside the judge on tort cases: reading and analyzing pleadings, expert opinions and case files; conducting legal research in case law and legal literature; and drafting decisions and judgments. Attending hearings, including evidentiary hearings, and gaining in-depth knowledge of civil procedure and judicial decision-making.</p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="date">2026 – Present</div>
-          <div>
-            <h3>Editorial Board Member</h3>
-            <div class="org"><i>Moznei Mishpat</i> Law Review, Vol. 18 · Editor-in-Chief: Dr. Sharon Wintal</div>
-            <p>Substantive and structural editing, and writing comprehensive review reports on articles accepted for publication.</p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="date">2026 – Present</div>
-          <div>
-            <h3>Teaching Mentor, "Introduction to Israeli Law"</h3>
-            <div class="org">Netanya Academic College</div>
-            <p>Teaching sessions on the foundations of law, and mentoring and supporting first-year law students individually.</p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="date">2026 – Present</div>
-          <div>
-            <h3>Excellence Program</h3>
-            <div class="org">Netanya Academic College</div>
-            <p>Enrichment program for outstanding students, offering exposure to legal practice and weekly lectures.</p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="date">2026</div>
-          <div>
-            <h3>Coordinator, Student Defenders Program</h3>
-            <div class="org">Student Union, Netanya Academic College</div>
-            <p>Coordinated the student defenders who represent students in disciplinary proceedings and in matters before the college administration. Responsible for recruiting and training defenders, assigning cases and overseeing their handling.</p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="date">2025 – 2026</div>
-          <div>
-            <h3>Criminal Law Clinic</h3>
-            <div class="org">Northern District Attorney's Office</div>
-            <p>Worked closely with a prosecutor on complex criminal cases, helping build the evidentiary and legal record. Conducted research in case law and legislation, and drafted documents and pleadings.</p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="date">2025 – Present</div>
-          <div>
-            <h3>Legal Podcast</h3>
-            <div class="org">With Prof. Roy Gilbar</div>
-            <p>Initiating, researching, writing and hosting episodes that make legal issues accessible to a general audience. The first episode focused on tort law.</p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="date">2024 – Present</div>
-          <div>
-            <h3>Law Program Student Representative</h3>
-            <div class="org">Netanya Academic College</div>
-            <p>Representing law students before the faculty and the school's administration. Working with lecturers on academic matters and student requests, gathering student needs, forming positions and bringing them to resolution with the relevant decision-makers.</p>
-          </div>
-        </div>
+        <div class="item"><div class="date">2026 – Present</div><div><h3>Judicial Clinic: Law and Adjudication in Practice</h3><div class="org">Herzliya Magistrates' Court · Chambers of Hon. Judge Amiad Rat</div><p>Working directly alongside the judge on tort cases: reading and analyzing pleadings, expert opinions and case files; conducting legal research in case law and legal literature; and drafting decisions and judgments. Attending hearings, including evidentiary hearings, and gaining in-depth knowledge of civil procedure and judicial decision-making.</p></div></div>
+        <div class="item"><div class="date">2026 – Present</div><div><h3>Editorial Board Member</h3><div class="org"><i>Moznei Mishpat</i> Law Review, Vol. 18 · Editor-in-Chief: Dr. Sharon Wintal</div><p>Substantive and structural editing, and writing comprehensive review reports on articles accepted for publication.</p></div></div>
+        <div class="item"><div class="date">2026 – Present</div><div><h3>Teaching Mentor, "Introduction to Israeli Law"</h3><div class="org">Netanya Academic College</div><p>Teaching sessions on the foundations of law, and mentoring and supporting first-year law students individually.</p></div></div>
+        <div class="item"><div class="date">2026 – Present</div><div><h3>Excellence Program</h3><div class="org">Netanya Academic College</div><p>Enrichment program for outstanding students, offering exposure to legal practice and weekly lectures.</p></div></div>
+        <div class="item"><div class="date">2026</div><div><h3>Coordinator, Student Defenders Program</h3><div class="org">Student Union, Netanya Academic College</div><p>Coordinated the student defenders who represent students in disciplinary proceedings and in matters before the college administration. Responsible for recruiting and training defenders, assigning cases and overseeing their handling.</p></div></div>
+        <div class="item"><div class="date">2025 – 2026</div><div><h3>Criminal Law Clinic</h3><div class="org">Northern District Attorney's Office</div><p>Worked closely with a prosecutor on complex criminal cases, helping build the evidentiary and legal record. Conducted research in case law and legislation, and drafted documents and pleadings.</p></div></div>
+        <div class="item"><div class="date">2025 – Present</div><div><h3>Legal Podcast</h3><div class="org">With Prof. Roy Gilbar</div><p>Initiating, researching, writing and hosting episodes that make legal issues accessible to a general audience. The first episode focused on tort law.</p></div></div>
+        <div class="item"><div class="date">2024 – Present</div><div><h3>Law Program Student Representative</h3><div class="org">Netanya Academic College</div><p>Representing law students before the faculty and the school's administration. Working with lecturers on academic matters and student requests, gathering student needs, forming positions and bringing them to resolution with the relevant decision-makers.</p></div></div>
       </div>
 
       <div class="sub">Professional</div>
       <div class="timeline">
-        <div class="item">
-          <div class="date">2025 – 2026</div>
-          <div>
-            <h3>CEO, Student Union</h3>
-            <div class="org">Netanya Academic College</div>
-            <p>Managed the union's day-to-day operations and its organizational, operational and financial areas. Led negotiations with the college administration, from forming positions to reaching agreements. Led a reform of the union's budget and renewed the dialogue with the administration. Worked regularly with local government and other academic institutions.</p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="date">2025</div>
-          <div>
-            <h3>Exam Prep Marathons for Law Students</h3>
-            <div class="org">Independent</div>
-            <p>Designed study materials and taught exam marathons in core courses: Constitutional Law, Contracts, Torts, Criminal Law and Corporate Law.</p>
-          </div>
-        </div>
-        <div class="item">
-          <div class="date">2024 – Present</div>
-          <div>
-            <h3>Independent Event Manager</h3>
-            <div class="org">Self-employed · Kadita Hall, Emek Hefer</div>
-            <p>Producing events end to end: defining client needs, planning and budgeting, negotiating and contracting with vendors, and leading the team on the day. As head waiter and deputy event manager at Kadita Hall, I lead dozens of staff and solve problems in real time under pressure while keeping quality high.</p>
-          </div>
-        </div>
+        <div class="item"><div class="date">2025 – 2026</div><div><h3>CEO, Student Union</h3><div class="org">Netanya Academic College</div><p>Managed the union's day-to-day operations and its organizational, operational and financial areas. Led negotiations with the college administration, from forming positions to reaching agreements. Led a reform of the union's budget and renewed the dialogue with the administration. Worked regularly with local government and other academic institutions.</p></div></div>
+        <div class="item"><div class="date">2025</div><div><h3>Exam Prep Marathons for Law Students</h3><div class="org">Independent</div><p>Designed study materials and taught exam marathons in core courses: Constitutional Law, Contracts, Torts, Criminal Law and Corporate Law.</p></div></div>
+        <div class="item"><div class="date">2024 – Present</div><div><h3>Independent Event Manager</h3><div class="org">Self-employed · Kadita Hall, Emek Hefer</div><p>Producing events end to end: defining client needs, planning and budgeting, negotiating and contracting with vendors, and leading the team on the day. As head waiter and deputy event manager at Kadita Hall, I lead dozens of staff and solve problems in real time under pressure while keeping quality high.</p></div></div>
       </div>
 
       <div class="sub">Military Service</div>
       <div class="timeline">
-        <div class="item">
-          <div class="date">2021 – 2024</div>
-          <div>
-            <h3>Outstanding Squad Commander</h3>
-            <div class="org">IDF · Kfir Brigade &amp; Infantry and Paratroopers Training Brigade (Bislach)</div>
-            <p>Graduated the squad commanders course with distinction; served as assistant intelligence officer in the Bislach Brigade. Fought in the Swords of Iron war. In the reserves, took part in Operation Roaring Lion and Operation Rising Lion.</p>
-          </div>
-        </div>
+        <div class="item"><div class="date">2021 – 2024</div><div><h3>Outstanding Squad Commander</h3><div class="org">IDF · Kfir Brigade &amp; Infantry and Paratroopers Training Brigade (Bislach)</div><p>Graduated the squad commanders course with distinction; served as assistant intelligence officer in the Bislach Brigade. Fought in the Swords of Iron war. In the reserves, took part in Operation Roaring Lion and Operation Rising Lion.</p></div></div>
       </div>
     </div>
   </section>
 
-  <!-- Education -->
   <section class="block" id="education">
     <div class="wrap">
       <div class="section-head"><h2>Education</h2></div>
@@ -352,98 +257,36 @@
         <div class="date">2024 – Present</div>
         <h3>LL.B in Law, Third Year</h3>
         <div class="org">Netanya Academic College</div>
-        <div class="meta">
-          <span class="pill">GPA 94.98</span>
-          <span class="pill">Excellence Program</span>
-          <span class="pill">Expected graduation: March 2028</span>
-        </div>
+        <div class="meta"><span class="pill">GPA 94.98</span><span class="pill">Excellence Program</span><span class="pill">Expected graduation: March 2028</span></div>
       </div>
     </div>
   </section>
 
-  <!-- Projects -->
   <section class="block" id="projects">
     <div class="wrap">
       <div class="section-head"><h2>Projects &amp; Volunteering</h2></div>
       <div class="cards">
-        <div class="card">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0014 0M12 17v5"/></svg></div>
-          <h3>Legal Podcast</h3>
-          <p>A podcast with Prof. Roy Gilbar that makes legal topics accessible to the public, from research and scripting to hosting.</p>
-        </div>
-        <div class="card">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V3H6.5A2.5 2.5 0 004 5.5v14z"/><path d="M6.5 17A2.5 2.5 0 004 19.5 2.5 2.5 0 006.5 22H20v-5"/></svg></div>
-          <h3>"We Are Tomorrow" NGO</h3>
-          <p>Building programs that prepare youth in Israel's periphery for military service and help them advance, including activities and information centers. <span style="color:var(--muted)">2026 – Present</span></p>
-        </div>
-        <div class="card">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
-          <h3>Leadership Program Fellow</h3>
-          <p>Kol Israel Haverim &amp; Mimizrach Shemesh, "Planted in Education" program: enrichment lectures and leadership workshops. <span style="color:var(--muted)">2025 – Present</span></p>
-        </div>
-        <div class="card">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div>
-          <h3>Tutoring Reservist Students</h3>
-          <p>Teaching assistant and private tutor for students serving in the reserves. <span style="color:var(--muted)">2025 – 2026</span></p>
-        </div>
-        <div class="card">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
-          <h3>Talks for Teens</h3>
-          <p>Lectures to high school students on the value of military service and academic studies. <span style="color:var(--muted)">2025 – 2026</span></p>
-        </div>
-        <div class="card">
-          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M5 7l-3 7a4 4 0 006 0L5 7zM19 7l-3 7a4 4 0 006 0l-3-7M8 21h8"/></svg></div>
-          <h3>Student Budget Reform</h3>
-          <p>As Student Union CEO, led a reform of the union's budget and renewed its working dialogue with the college administration.</p>
-        </div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0014 0M12 17v5"/></svg></div><h3>Legal Podcast</h3><p>A podcast with Prof. Roy Gilbar that makes legal topics accessible to the public, from research and scripting to hosting.</p></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V3H6.5A2.5 2.5 0 004 5.5v14z"/><path d="M6.5 17A2.5 2.5 0 004 19.5 2.5 2.5 0 006.5 22H20v-5"/></svg></div><h3>"We Are Tomorrow" NGO</h3><p>Building programs that prepare youth in Israel's periphery for military service and help them advance, including activities and information centers. <span class="when">2026 – Present</span></p></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><h3>Leadership Program Fellow</h3><p>Kol Israel Haverim &amp; Mimizrach Shemesh, "Planted in Education" program: enrichment lectures and leadership workshops. <span class="when">2025 – Present</span></p></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div><h3>Tutoring Reservist Students</h3><p>Teaching assistant and private tutor for students serving in the reserves. <span class="when">2025 – 2026</span></p></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><h3>Talks for Teens</h3><p>Lectures to high school students on the value of military service and academic studies. <span class="when">2025 – 2026</span></p></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M5 7l-3 7a4 4 0 006 0L5 7zM19 7l-3 7a4 4 0 006 0l-3-7M8 21h8"/></svg></div><h3>Student Budget Reform</h3><p>As Student Union CEO, led a reform of the union's budget and renewed its working dialogue with the college administration.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Skills -->
   <section class="block" id="skills">
     <div class="wrap">
       <div class="section-head"><h2>Skills</h2></div>
       <div class="skills">
-        <div class="skill-group">
-          <h3>Legal</h3>
-          <div class="tags">
-            <span class="tag">Legal research</span>
-            <span class="tag">Drafting judgments</span>
-            <span class="tag">Pleadings</span>
-            <span class="tag">Civil procedure</span>
-            <span class="tag">Tort law</span>
-            <span class="tag">Criminal law</span>
-            <span class="tag">Academic editing</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <h3>Leadership</h3>
-          <div class="tags">
-            <span class="tag">Negotiation</span>
-            <span class="tag">Team management</span>
-            <span class="tag">Budgeting</span>
-            <span class="tag">Public speaking</span>
-            <span class="tag">Teaching &amp; mentoring</span>
-            <span class="tag">Crisis management</span>
-          </div>
-        </div>
-        <div class="skill-group">
-          <h3>Tools &amp; Languages</h3>
-          <div class="tags">
-            <span class="tag">Hebrew (native)</span>
-            <span class="tag">English (very good)</span>
-            <span class="tag">Microsoft Office</span>
-            <span class="tag">AI tools</span>
-            <span class="tag">Net HaMishpat</span>
-            <span class="tag">Nevo legal database</span>
-          </div>
-        </div>
+        <div class="skill-group"><h3>Legal</h3><div class="tags"><span class="tag">Legal research</span><span class="tag">Drafting judgments</span><span class="tag">Pleadings</span><span class="tag">Civil procedure</span><span class="tag">Tort law</span><span class="tag">Criminal law</span><span class="tag">Academic editing</span></div></div>
+        <div class="skill-group"><h3>Leadership</h3><div class="tags"><span class="tag">Negotiation</span><span class="tag">Team management</span><span class="tag">Budgeting</span><span class="tag">Public speaking</span><span class="tag">Teaching &amp; mentoring</span><span class="tag">Crisis management</span></div></div>
+        <div class="skill-group"><h3>Tools &amp; Languages</h3><div class="tags"><span class="tag">Hebrew (native)</span><span class="tag">English (very good)</span><span class="tag">Microsoft Office</span><span class="tag">AI tools</span><span class="tag">Net HaMishpat</span><span class="tag">Nevo legal database</span></div></div>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
   <div class="wrap">
     <section class="contact" id="contact">
       <h2>Let's Connect</h2>
@@ -457,7 +300,129 @@
   </div>
 </main>
 
-<footer>© <span id="y"></span> Uriah Shraga</footer>
-<script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+<!-- ======================= HEBREW ======================= -->
+<main class="he" lang="he" dir="rtl">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">סטודנט למשפטים · LL.B, שנה ג'</div>
+        <h1>אוריה שרגא</h1>
+        <p class="lead">סטודנט למשפטים בשנה ג' עם ניסיון מעשי בבית המשפט ובפרקליטות. משלב מחקר וכתיבה משפטית מעמיקים עם ניסיון ניהולי ומנהיגותי מאגודת הסטודנטים ומהשירות בצה"ל.</p>
+        <div class="btns">
+          <a class="btn btn-primary" href="CV.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg>הורדת קורות חיים</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/uriah-shraga-/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>לינקדאין</a>
+        </div>
+      </div>
+      <div class="photo"><img src="photo.jpg" alt="אוריה שרגא"></div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="snapshot">
+      <div class="stat"><strong>94.98</strong><span>ממוצע ציונים, LL.B</span></div>
+      <div class="stat"><strong>2<em>×</em></strong><span>קליניקות משפטיות: בית משפט ופרקליטות</span></div>
+      <div class="stat"><strong>כתב עת</strong><span>חבר מערכת, "מאזני משפט"</span></div>
+      <div class="stat"><strong>2028</strong><span>צפי סיום לימודים (מרץ)</span></div>
+    </div>
+  </div>
+
+  <section class="block" id="experience-he">
+    <div class="wrap">
+      <div class="section-head"><h2>ניסיון</h2></div>
+      <div class="sub">ניסיון משפטי ואקדמי</div>
+      <div class="timeline">
+        <div class="item"><div class="date">2026 – היום</div><div><h3>הקליניקה למשפט ושיפוט הלכה למעשה</h3><div class="org">בית משפט השלום הרצליה · כבוד השופט עמיעד רט</div><p>עבודה צמודה לצד שופט בתיקי נזיקין: קריאה וניתוח של כתבי טענות, חוות דעת וחומרי התיק, עריכת מחקר משפטי בפסיקה ובספרות, וניסוח טיוטות להחלטות ולפסקי דין. נוכחות בדיונים, לרבות דיוני הוכחות, והיכרות מעמיקה עם סדרי הדין האזרחי ועם שיקולי ההכרעה השיפוטית.</p></div></div>
+        <div class="item"><div class="date">2026 – היום</div><div><h3>חבר מערכת</h3><div class="org">כתב העת "מאזני משפט", כרך י"ח · עורך ראשי ד"ר שרון וינטל</div><p>הגהה מהותית ומבנית וכתיבת חוות דעת מקיפות למאמרים אשר עתידים להתפרסם בכתב העת.</p></div></div>
+        <div class="item"><div class="date">2026 – היום</div><div><h3>חונך בקורס "הכרת המשפט הישראלי"</h3><div class="org">המכללה האקדמית נתניה</div><p>העברת שיעורים בנושאי היסוד של עולם המשפט, חניכה וסיוע פרטני לסטודנטים בשנתם הראשונה ללימודי המשפטים.</p></div></div>
+        <div class="item"><div class="date">2026 – היום</div><div><h3>"תוכנית המצוינות"</h3><div class="org">המכללה האקדמית נתניה</div><p>תוכנית העשרה לסטודנטים מצטיינים, הכוללת חשיפה לעולם הפרקטיקה המשפטית והרצאות העשרה על בסיס שבועי.</p></div></div>
+        <div class="item"><div class="date">2026</div><div><h3>רכז מערך הסנגורים</h3><div class="org">אגודת הסטודנטים, המכללה האקדמית נתניה</div><p>ריכוז מערך הסנגורים הסטודנטיאליים, שמייצג סטודנטים בהליכים משמעתיים ובפניות מול הנהלת המכללה. אחריות על גיוס הסנגורים והכשרתם, על חלוקת התיקים ביניהם ועל ליווי הטיפול בהם.</p></div></div>
+        <div class="item"><div class="date">2025 – 2026</div><div><h3>הקליניקה למשפט פלילי</h3><div class="org">פרקליטות מחוז צפון</div><p>עבודה צמודה לצד פרקליט, כולל סיוע בטיפול בתיקים פליליים מורכבים ובגיבוש החומר הראייתי והמשפטי. ביצוע מחקר משפטי בפסיקה ובחקיקה, וניסוח טיוטות של מסמכים וכתבי טענות.</p></div></div>
+        <div class="item"><div class="date">2025 – היום</div><div><h3>פודקאסט משפטי</h3><div class="org">עם פרופ' רועי גילבר</div><p>ייזום, מחקר, כתיבה והגשה של פרקים המנגישים סוגיות משפטיות לקהל הרחב; פרק ראשון עסק בדיני נזיקין.</p></div></div>
+        <div class="item"><div class="date">2024 – היום</div><div><h3>נציג מסלול משפטים</h3><div class="org">המכללה האקדמית נתניה</div><p>ייצוג ציבור הסטודנטים במסלול מול סגל ההוראה והנהלת הפקולטה; ניהול ממשק עבודה שוטף עם המרצים בסוגיות אקדמיות ובפניות הסטודנטים; איסוף צורכי הסטודנטים, גיבוש עמדות והבאתן לפתרון מול הגורמים המוסמכים.</p></div></div>
+      </div>
+
+      <div class="sub">ניסיון תעסוקתי</div>
+      <div class="timeline">
+        <div class="item"><div class="date">2025 – 2026</div><div><h3>מנכ"ל אגודת הסטודנטים</h3><div class="org">המכללה האקדמית נתניה</div><p>ניהול השוטף של האגודה והאחריות על התחומים הארגוניים, התפעוליים והכלכליים. ניהול המשא ומתן של האגודה מול הנהלת המכללה, גיבוש עמדות והצגתן, והגעה להסכמות. הובלת רפורמה בתקציב האגודה וחידוש הדיאלוג מול הנהלת המכללה. עבודה שוטפת מול השלטון המקומי ומול מוסדות אקדמיים נוספים.</p></div></div>
+        <div class="item"><div class="date">2025</div><div><h3>מרתוני הכנה לבחינות לסטודנטים למשפטים</h3><div class="org">עצמאי</div><p>בניית מערכי לימוד והעברת מרתונים בקורסי ליבה: משפט חוקתי, דיני חוזים, נזיקין, עונשין וחברות.</p></div></div>
+        <div class="item"><div class="date">2024 – היום</div><div><h3>מנהל אירועים עצמאי</h3><div class="org">עצמאי · אולם קדיתא, עמק חפר</div><p>הפקת אירועים מקצה לקצה, כולל אפיון צורכי הלקוח, תכנון ותקצוב, משא ומתן מול ספקים וסגירת התקשרויות, והובלת הצוות בזמן האירוע. רב מלצרים וסגן מנהל אירועים באולם קדיתא בעמק חפר: הובלה של עשרות עובדים, ניהול משברים ופתרון בעיות בזמן אמת תחת לחץ, תוך שמירה על רמת ביצוע גבוהה.</p></div></div>
+      </div>
+
+      <div class="sub">שירות צבאי</div>
+      <div class="timeline">
+        <div class="item"><div class="date">2021 – 2024</div><div><h3>מפקד כיתה מצטיין</h3><div class="org">חטיבת כפיר, חטיבת ביסל"ח</div><p>סיום קורס מ"כים בהצטיינות; עוזר קצין מודיעין בחטיבת ביסל"ח; השתתפות בלחימה במלחמת "חרבות ברזל"; במילואים: השתתפות במבצעים "שאגת הארי" ו"עם כלביא".</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="education-he">
+    <div class="wrap">
+      <div class="section-head"><h2>השכלה</h2></div>
+      <div class="edu">
+        <div class="date">2024 – היום</div>
+        <h3>סטודנט למשפטים (LL.B), שנה ג'</h3>
+        <div class="org">המכללה האקדמית נתניה</div>
+        <div class="meta"><span class="pill">ממוצע 94.98</span><span class="pill">תוכנית המצוינות</span><span class="pill">צפי סיום: מרץ 2028</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="projects-he">
+    <div class="wrap">
+      <div class="section-head"><h2>פרויקטים והתנדבות</h2></div>
+      <div class="cards">
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0014 0M12 17v5"/></svg></div><h3>פודקאסט משפטי</h3><p>פודקאסט עם פרופ' רועי גילבר שמנגיש סוגיות משפטיות לקהל הרחב, מהמחקר והכתיבה ועד ההגשה.</p></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V3H6.5A2.5 2.5 0 004 5.5v14z"/><path d="M6.5 17A2.5 2.5 0 004 19.5 2.5 2.5 0 006.5 22H20v-5"/></svg></div><h3>עמותת "אנחנו המחר"</h3><p>בניית תוכניות ייעודיות להכנה לגיוס ולקידום בני נוער בפריפריה, כולל פיתוח פעילויות ומרכזי מידע. <span class="when">2026 – היום</span></p></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><h3>מלגאי בתוכנית מנהיגות</h3><p>כל ישראל חברים, ממזרח שמש – "נטועים בחינוך": הרצאות העשרה וסדנאות מנהיגות. <span class="when">2025 – היום</span></p></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div><h3>תרגול סטודנטים משרתי מילואים</h3><p>מתרגל ומורה פרטי לסטודנטים משרתי מילואים. <span class="when">2025 – 2026</span></p></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><h3>הרצאות לבני נוער</h3><p>הרצאות על חשיבות הגיוס לצבא והלימודים האקדמיים. <span class="when">2025 – 2026</span></p></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M5 7l-3 7a4 4 0 006 0L5 7zM19 7l-3 7a4 4 0 006 0l-3-7M8 21h8"/></svg></div><h3>רפורמה בתקציב האגודה</h3><p>כמנכ"ל אגודת הסטודנטים, הובלת רפורמה בתקציב האגודה וחידוש הדיאלוג מול הנהלת המכללה.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="skills-he">
+    <div class="wrap">
+      <div class="section-head"><h2>כישורים</h2></div>
+      <div class="skills">
+        <div class="skill-group"><h3>משפטי</h3><div class="tags"><span class="tag">מחקר משפטי</span><span class="tag">ניסוח החלטות ופסקי דין</span><span class="tag">כתבי טענות</span><span class="tag">סדר דין אזרחי</span><span class="tag">דיני נזיקין</span><span class="tag">משפט פלילי</span><span class="tag">עריכה אקדמית</span></div></div>
+        <div class="skill-group"><h3>ניהול ומנהיגות</h3><div class="tags"><span class="tag">משא ומתן</span><span class="tag">ניהול צוות</span><span class="tag">תקצוב</span><span class="tag">עמידה מול קהל</span><span class="tag">הוראה וחניכה</span><span class="tag">ניהול משברים</span></div></div>
+        <div class="skill-group"><h3>שפות וכלים</h3><div class="tags"><span class="tag">עברית – שפת אם</span><span class="tag">אנגלית – טובה מאוד</span><span class="tag">Office</span><span class="tag">כלי AI</span><span class="tag">נט המשפט</span><span class="tag">נבו</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="contact" id="contact-he">
+      <h2>בואו נדבר</h2>
+      <p>אשמח לשמוע על התמחויות, מחקר משפטי והזדמנויות חדשות.</p>
+      <div class="btns">
+        <a class="btn btn-primary" href="https://www.linkedin.com/in/uriah-shraga-/" target="_blank" rel="noopener">להתחבר בלינקדאין</a>
+        <a class="btn btn-ghost" href="CV.pdf" download>הורדת קורות חיים</a>
+      </div>
+      <a class="mail" href="mailto:Uriahshraga2002@gmail.com">Uriahshraga2002@gmail.com</a>
+    </section>
+  </div>
+</main>
+
+<footer>© <span id="y"></span> <span class="en">Uriah Shraga</span><span class="he">אוריה שרגא</span></footer>
+
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+  var titles = { en: 'Uriah Shraga | Law Student', he: 'אוריה שרגא | סטודנט למשפטים' };
+  function setLang(lang) {
+    var h = document.documentElement;
+    h.lang = lang; h.dir = lang === 'he' ? 'rtl' : 'ltr'; h.className = 'lang-' + lang;
+    document.title = titles[lang];
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+    // nav anchors point to the visible language's sections
+    document.querySelectorAll('.links a').forEach(function (a) {
+      var base = a.getAttribute('href').replace('-he', '');
+      a.setAttribute('href', lang === 'he' ? base + '-he' : base);
+    });
+    document.querySelector('.logo').setAttribute('href', '#');
+  }
+  setLang(document.documentElement.lang === 'he' ? 'he' : 'en');
+</script>
 </body>
 </html>
