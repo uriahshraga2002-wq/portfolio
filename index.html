@@ -148,7 +148,43 @@
 
     footer { text-align: center; font-size: .85rem; color: var(--muted); padding: 0 0 40px; }
 
+    /* AI & Legal Tech */
+    .ai { background: linear-gradient(160deg, #14213d 0%, #1d2f57 100%); border-radius: 22px; padding: 40px; color: #dfe4ee; position: relative; overflow: hidden; }
+    .ai::before { content: ""; position: absolute; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, rgba(176,141,87,.28), transparent 70%); top: -160px; inset-inline-end: -120px; pointer-events: none; }
+    .ai-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(176,141,87,.18); color: #e6cfa5; border: 1px solid rgba(176,141,87,.45); font-size: .78rem; font-weight: 600; padding: 4px 12px; border-radius: 999px; margin-bottom: 14px; }
+    .lang-he .ai-badge { font-size: .9rem; }
+    .ai-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 36px; align-items: center; position: relative; }
+    .shot { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.35); transform: perspective(1200px) rotateY(var(--tilt, -4deg)); transition: transform .4s; }
+    .lang-he .shot { --tilt: 4deg; }
+    .shot:hover { transform: none; }
+    .shot-bar { display: flex; gap: 6px; padding: 9px 12px; background: #eef1f6; border-bottom: 1px solid #dde2ea; direction: ltr; }
+    .shot-bar i { width: 10px; height: 10px; border-radius: 50%; background: #d4d9e2; }
+    .shot-bar i:nth-child(1) { background: #ef8a80; } .shot-bar i:nth-child(2) { background: #f2c66d; } .shot-bar i:nth-child(3) { background: #7fcf8f; }
+    .shot img { display: block; width: 100%; height: auto; }
+    .ai h3 { color: #fff; font-size: 1.7rem; margin-bottom: 10px; }
+    .ai p.desc { margin-bottom: 18px; }
+    .ai-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 20px; }
+    .ai-stats div { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 10px; padding: 8px 6px; text-align: center; font-size: .74rem; line-height: 1.3; }
+    .lang-he .ai-stats div { font-size: .85rem; }
+    .ai-stats b { display: block; font-family: var(--serif); font-size: 1.35rem; color: #e6cfa5; }
+    .ai-list { list-style: none; display: grid; gap: 9px; margin-bottom: 20px; }
+    .ai-list li { display: flex; gap: 10px; font-size: .95rem; }
+    .lang-he .ai-list li { font-size: 1.03rem; }
+    .ai-list li::before { content: "✦"; color: var(--gold); flex: none; }
+    .ai .tags { margin-bottom: 22px; }
+    .ai .tag { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18); color: #dfe4ee; }
+    .ai .btn-primary { background: var(--gold); border-color: var(--gold); color: #fff; }
+    .ai .btn-primary:hover { background: #9a7a48; }
+    .ai-note { margin-top: 26px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.12); font-size: .88rem; color: #b9c2d3; display: flex; gap: 10px; position: relative; }
+    .lang-he .ai-note { font-size: .98rem; }
+    .ai-note svg { width: 18px; height: 18px; flex: none; color: var(--gold); margin-top: 2px; }
+
     @media (max-width: 900px) {
+      .ai { padding: 26px 20px; }
+      .ai-grid { grid-template-columns: 1fr; gap: 26px; }
+      .shot, .lang-he .shot { transform: none; }
+      .ai-stats { grid-template-columns: repeat(3, 1fr); }
+
       .hero { padding-top: 110px; }
       .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 36px; }
       .photo { order: -1; }
@@ -180,6 +216,7 @@
       <ul class="links" onclick="this.classList.remove('open')">
         <li><a href="#experience"><span class="en">Experience</span><span class="he">ניסיון</span></a></li>
         <li><a href="#education"><span class="en">Education</span><span class="he">השכלה</span></a></li>
+        <li><a href="#ai"><span class="en">AI</span><span class="he">AI</span></a></li>
         <li><a href="#projects"><span class="en">Projects</span><span class="he">פרויקטים</span></a></li>
         <li><a href="#skills"><span class="en">Skills</span><span class="he">כישורים</span></a></li>
         <li><a href="#contact"><span class="en">Contact</span><span class="he">צור קשר</span></a></li>
@@ -246,6 +283,41 @@
       <div class="sub">Military Service</div>
       <div class="timeline">
         <div class="item"><div class="date">2021 – 2024</div><div><h3>Outstanding Squad Commander</h3><div class="org">IDF · Kfir Brigade &amp; Infantry and Paratroopers Training Brigade (Bislach)</div><p>Graduated the squad commanders course with distinction; served as assistant intelligence officer in the Bislach Brigade. Fought in the Swords of Iron war. In the reserves, took part in Operation Roaring Lion and Operation Rising Lion.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="ai">
+    <div class="wrap">
+      <div class="section-head"><h2>AI &amp; Legal Tech</h2></div>
+      <div class="ai">
+        <div class="ai-grid">
+          <a class="shot" href="https://claude.ai/artifact/2RXgkWwnWmyhqzX3sMZWWv" target="_blank" rel="noopener" aria-label="Open the project">
+            <div class="shot-bar"><i></i><i></i><i></i></div>
+            <img src="ai-project.png" alt="Home page of the Civil &amp; Public Law knowledge platform" loading="lazy">
+          </a>
+          <div>
+            <div class="ai-badge">✦ Built with Claude AI</div>
+            <h3>Civil &amp; Public Law Knowledge Platform</h3>
+            <p class="desc">An interactive research and study platform I designed and built with AI, covering five core areas of law: Contracts, Torts, Corporate Law, Constitutional Law and Civil Procedure. It brings together leading case law, legislative amendments and academic articles in one searchable place.</p>
+            <div class="ai-stats">
+              <div><b>5</b>Fields</div>
+              <div><b>37</b>Topics</div>
+              <div><b>199</b>Rulings</div>
+              <div><b>26</b>Laws</div>
+              <div><b>46</b>Articles</div>
+            </div>
+            <ul class="ai-list">
+              <li>Case briefs: facts, holding and why each ruling matters in practice</li>
+              <li>Built-in AI assistant that answers questions from the material</li>
+              <li>Full-text search across rulings, statutes and concepts</li>
+              <li>Interview-prep drill for law firm interviews</li>
+            </ul>
+            <div class="tags"><span class="tag">Claude</span><span class="tag">Prompt design</span><span class="tag">Legal research</span><span class="tag">Knowledge management</span></div>
+            <a class="btn btn-primary" href="https://claude.ai/artifact/2RXgkWwnWmyhqzX3sMZWWv" target="_blank" rel="noopener">View the project →</a>
+          </div>
+        </div>
+        <div class="ai-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Responsible use: AI speeds up research and organization, but every citation is verified against primary sources (Nevo) before it is relied on.</span></div>
       </div>
     </div>
   </section>
@@ -351,6 +423,41 @@
       <div class="sub">שירות צבאי</div>
       <div class="timeline">
         <div class="item"><div class="date">2021 – 2024</div><div><h3>מפקד כיתה מצטיין</h3><div class="org">חטיבת כפיר, חטיבת ביסל"ח</div><p>סיום קורס מ"כים בהצטיינות; עוזר קצין מודיעין בחטיבת ביסל"ח; השתתפות בלחימה במלחמת "חרבות ברזל"; במילואים: השתתפות במבצעים "שאגת הארי" ו"עם כלביא".</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="ai-he">
+    <div class="wrap">
+      <div class="section-head"><h2>AI וטכנולוגיה משפטית</h2></div>
+      <div class="ai">
+        <div class="ai-grid">
+          <a class="shot" href="https://claude.ai/artifact/2RXgkWwnWmyhqzX3sMZWWv" target="_blank" rel="noopener" aria-label="לפרויקט">
+            <div class="shot-bar"><i></i><i></i><i></i></div>
+            <img src="ai-project.png" alt="דף הבית של מערכת הידע במשפט האזרחי והציבורי" loading="lazy">
+          </a>
+          <div>
+            <div class="ai-badge">✦ נבנה עם Claude AI</div>
+            <h3>המשפט האזרחי והציבורי – מערכת ידע</h3>
+            <p class="desc">מערכת מחקר ולמידה אינטראקטיבית שתכננתי ובניתי בעזרת AI, בחמישה תחומי ליבה: דיני חוזים, נזיקין, חברות, משפט חוקתי וסדר דין אזרחי. המערכת מרכזת במקום אחד את הפסיקה המרכזית, תיקוני חקיקה ומאמרים, עם חיפוש בכל החומר.</p>
+            <div class="ai-stats">
+              <div><b>5</b>תחומים</div>
+              <div><b>37</b>נושאים</div>
+              <div><b>199</b>פסקי דין</div>
+              <div><b>26</b>חוקים ותיקונים</div>
+              <div><b>46</b>מאמרים</div>
+            </div>
+            <ul class="ai-list">
+              <li>תקצירי פסקי דין: עובדות, הלכה, ולמה זה חשוב בפרקטיקה</li>
+              <li>עוזר AI מובנה שעונה על שאלות מתוך החומר</li>
+              <li>חיפוש בכל פסקי הדין, החוקים והמושגים</li>
+              <li>תרגול לראיונות במשרדי עורכי דין</li>
+            </ul>
+            <div class="tags"><span class="tag">Claude</span><span class="tag">הנדסת פרומפטים</span><span class="tag">מחקר משפטי</span><span class="tag">ניהול ידע</span></div>
+            <a class="btn btn-primary" href="https://claude.ai/artifact/2RXgkWwnWmyhqzX3sMZWWv" target="_blank" rel="noopener">לצפייה בפרויקט ←</a>
+          </div>
+        </div>
+        <div class="ai-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>שימוש אחראי: ה-AI מאיץ את המחקר והארגון, אבל כל אסמכתה נבדקת מול המקור (נבו) לפני שמסתמכים עליה.</span></div>
       </div>
     </div>
   </section>
